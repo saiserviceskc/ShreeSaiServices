@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Shree Sai Services KC</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Favicon (Cloudinary) -->
+    <link rel="icon" type="image/jpg"
+          href="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <div class="container header-container">
+
+        <!-- LOGO (Cloudinary) -->
+        <div class="logo">
+            <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg"
+                 alt="Sai Baba Logo">
+            <h1>Shree Sai Services KC</h1>
+        </div>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('sales') }}">Sales</a></li>
+                <li><a href="{{ url_for('booking') }}">Book Service</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- ================= CONTACT SECTION ================= -->
+<section class="contact">
+    <div class="container">
+
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="contact-subtitle">
+            We’re here to help you with all appliance repair needs. Reach out anytime!
+        </p>
+
+        <div class="contact-grid">
+
+            <!-- CONTACT INFO -->
+            <div class="contact-card">
+                <h3>Contact Information</h3>
+
+                <p><strong>Owner Name:</strong> Kakasaheb Chintamani</p>
+
+                <p>📞 <strong>Phone:</strong> 
+                    <a href="tel:+919371074732">+91-9371074732</a>
+                </p>
+
+                <p>📧 <strong>Email:</strong> 
+                    <a href="mailto:kl.chintamani@gmail.com">
+                        kl.chintamani@gmail.com
+                    </a>
+                </p>
+
+                <p>📍 <strong>Address:</strong><br>
+                    Ambegaon Pathar, Sr. No.16,<br>
+                    Dhanakawadi, Pune 411046
+                </p>
+
+                <a href="{{ url_for('booking') }}" class="btn contact-btn">
+                    Book Service Now
+                </a>
+            </div>
+
+            <!-- GOOGLE MAP (IMPROVED) -->
+            <div class="contact-map">
+                <iframe
+                    src="https://www.google.com/maps?q=Ambegaon%20Pathar%20Pune&output=embed"
+                    width="100%"
+                    height="100%"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Shree Sai Services. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buy Product</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="buy-container">
+
+    <h2>Buy {{ product.name }}</h2>
+
+    <div class="buy-content">
+
+        <!-- PRODUCT DETAILS -->
+        <div class="buy-product">
+            <img src="{{ url_for('static', filename='images/' + product.image) }}">
+            <p>{{ product.description }}</p>
+            <h3>Price: ₹{{ product.price }}</h3>
+        </div>
+
+        <!-- CUSTOMER FORM -->
+        <div class="buy-form">
+            <form method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="phone" placeholder="Phone Number" required>
+                <textarea name="address" placeholder="Address" required></textarea>
+
+                <button type="submit">Confirm Order</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

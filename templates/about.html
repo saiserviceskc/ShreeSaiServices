@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us - Shree Sai Services</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Shree Sai Services offers expert repair services for AC, washing machines, refrigerators, and more. Trusted and affordable doorstep service.">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg"
+          href="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+   <div class="container header-container">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.jpg') }}"
+                 alt="Sai Baba Logo">
+            <h1>Shree Sai Services KC</h1>
+        </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <ul>
+               <li><a href="{{ url_for('home') }}">Home</a></li>
+               <li><a href="{{ url_for('services') }}">Services</a></li>
+               <li><a href="{{ url_for('sales') }}">Sales</a></li>
+               <li><a href="{{ url_for('booking') }}">Book Service</a></li>
+               <li><a href="{{ url_for('about') }}">About Us</a></li>
+               <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ================= ABOUT SECTION ================= -->
+<section class="about">
+    <div class="container about-grid">
+
+        <!-- LEFT CONTENT -->
+        <div class="about-text">
+            <h2>About Shree Sai Services</h2>
+
+            <p>
+                Shree Sai Services is a trusted home appliance repair and maintenance
+                company providing expert solutions for washing machines, air conditioners,
+                refrigerators, and coolers.
+            </p>
+
+            <p>
+                With years of experience and skilled technicians, we ensure fast,
+                reliable, and affordable service right at your doorstep.
+            </p>
+
+            <div class="about-highlights">
+                <div class="highlight">✔ 10+ Years Experience</div>
+                <div class="highlight">✔ Certified Technicians</div>
+                <div class="highlight">✔ Genuine Spare Parts</div>
+                <div class="highlight">✔ Doorstep Service</div>
+            </div>
+        </div>
+
+        <!-- RIGHT CARD -->
+        <div class="about-card">
+            <h3>Why Choose Us?</h3>
+
+            <ul>
+                <li>⚡ Quick response & same-day service</li>
+                <li>💰 Affordable & transparent pricing</li>
+                <li>🛠 Expert repair for all major brands</li>
+                <li>😊 100% customer satisfaction</li>
+            </ul>
+
+            <a href="{{ url_for('booking') }}" class="btn">
+                Book Service Now
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Shree Sai Services. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+function toggleMenu(){
+    document.querySelector("nav").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

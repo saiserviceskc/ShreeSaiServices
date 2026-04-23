@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #121212;
+        color: #fff;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #ffa500;
+        margin-bottom: 20px;
+    }
+
+    a.logout-btn {
+        display: inline-block;
+        margin-bottom: 30px;
+        padding: 10px 20px;
+        background: #ff4d4d;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    a.logout-btn:hover {
+        background: #ff0000;
+    }
+
+    .section-title {
+        color: #ffa500;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+        border-bottom: 2px solid #ffa500;
+        padding-bottom: 5px;
+        text-align: center;
+    }
+
+    .table-container {
+        overflow-x: auto;
+        margin-bottom: 50px;
+        box-shadow: 0 5px 15px rgba(255,165,0,0.2);
+        border-radius: 12px;
+        background: #1a1a1a;
+        padding: 15px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 700px;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+
+    th {
+        background: #222;
+        color: #ffa500;
+        border-bottom: 2px solid #ffa500;
+    }
+
+    tr:nth-child(even) {
+        background: #222;
+    }
+
+    tr:hover {
+        background: #333;
+    }
+
+    button.mark-btn {
+        padding: 6px 12px;
+        background: green;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9em;
+    }
+
+    button.mark-btn:hover {
+        background: #00cc00;
+    }
+
+    .done {
+        color: #00ff99;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        table { font-size: 14px; }
+    }
+</style>
+
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+<a href="{{ url_for('admin_logout') }}" class="logout-btn">Logout</a>
+
+<!-- ================= SERVICE BOOKINGS ================= -->
+<div class="section-title">Service Bookings</div>
+
+<div class="table-container">
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+        <tr>
+            <td>{{ booking.id }}</td>
+            <td>{{ booking.name }}</td>
+            <td>{{ booking.phone }}</td>
+            <td>{{ booking.email }}</td>
+            <td>{{ booking.service }}</td>
+            <td>{{ booking.date }}</td>
+            <td>{{ booking.created_at }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7" style="text-align:center;">No bookings found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<!-- ================= ORDERS ================= -->
+<div class="section-title">Orders</div>
+
+<div class="table-container">
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.customer_name }}</td>
+            <td>{{ order.product_name }}</td>
+            <td>₹ {{ order.price }}</td>
+            <td>{{ order.customer_phone }}</td>
+            <td>{{ order.customer_email }}</td>
+            <td>{{ order.customer_address }}</td>
+            <td>
+                {% if order.status == 'Done' %}
+                    <span class="done">Completed</span>
+                {% else %}
+                    Pending
+                {% endif %}
+            </td>
+            <td>
+                {% if order.status != 'Done' %}
+                <form action="{{ url_for('update_order_status', order_id=order.id) }}"
+                      method="POST">
+                    <button type="submit" class="mark-btn">
+                        Mark Done
+                    </button>
+                </form>
+                {% else %}
+                ✅
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="9" style="text-align:center;">No orders found</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>

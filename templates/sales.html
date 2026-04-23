@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shree Sai Services - Electronics Sales</title>
+
+<!-- Favicon -->
+<link rel="icon" href="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg">
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+    <div class="container header-container">
+
+        <div class="logo">
+            <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg" 
+                 alt="Logo">
+            <h1>Shree Sai Services KC</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('sales') }}">Sales</a></li>
+                <li><a href="{{ url_for('booking') }}">Book Service</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<!-- ================= SALES SECTION ================= -->
+<section class="sales">
+    <h1 class="sales-main-title">Electronics Sales</h1>
+
+    <div class="sales-grid">
+
+    {% for product in products %}
+    <div class="sales-card">
+
+        <!-- ✅ SINGLE IMAGE -->
+        <img src="{{ product.image }}" 
+             alt="{{ product.name }}"
+             loading="lazy"
+             onerror="this.src='https://via.placeholder.com/300'">
+
+        <!-- PRODUCT DETAILS -->
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+
+        <!-- PRICE -->
+        <span class="price-tag">₹{{ product.price }}</span>
+
+        <!-- BUTTON -->
+        <a href="{{ url_for('buy_product', product_id=product.id) }}" 
+           class="buy-btn">
+            Buy Now
+        </a>
+
+    </div>    
+    {% endfor %}
+
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>&copy; 2026 Shree Sai Services. All Rights Reserved.</p>
+</footer>
+
+<!-- OPTIONAL MENU SCRIPT -->
+<script>
+function toggleMenu(){
+    document.querySelector("nav").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>

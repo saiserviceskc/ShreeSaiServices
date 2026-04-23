@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - Shree Sai Services</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpg"
+          href="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg">
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/WhatsApp Image 2026-01-12 at 22.54.38.jpeg') }}"
+                 alt="Sai Baba Logo">
+            <h1>Shree Sai Services KC</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('sales') }}">Sales</a></li>
+                <li><a href="{{ url_for('booking') }}">Book Service</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="booking">
+    <div class="container booking-grid">
+
+        <!-- LEFT: FORM -->
+        <div class="booking-form-card">
+            <h2>Book a Service</h2>
+
+            <!-- ✅ AJAX FORM -->
+            <form id="bookingForm">
+
+                <label>Full Name</label>
+                <input type="text" name="fullname" required>
+
+                <label>Phone Number</label>
+                <input type="tel" name="phone" required>
+
+                <label>Email</label>
+                <input type="email" name="email">
+
+                <label>Service Type</label>
+                <select name="service" required>
+                    <option value="">-- Select Service --</option>
+                    <option>Washing Machine Repair</option>
+                    <option>AC Repair</option>
+                    <option>Refrigerator Repair</option>
+                    <option>Oven Repair</option>
+                    <option>TV Repair</option>
+                    <option>Microwave Repair</option>
+                    <option>Dish Washer Repair</option>
+                </select>
+
+                <label>Preferred Date</label>
+                <input type="date" name="date" required>
+
+                <button type="submit">Submit Booking</button>
+            </form>
+        </div>
+
+        <!-- RIGHT: INFO -->
+        <div class="booking-info">
+            <h3>Why Choose Shree Sai Services?</h3>
+            <ul>
+                <li>✔ Experienced Technicians</li>
+                <li>✔ Same-Day Service</li>
+                <li>✔ Affordable Pricing</li>
+                <li>✔ Genuine Spare Parts</li>
+                <li>✔ 24×7 Customer Support</li>
+            </ul>
+
+            <div class="booking-contact">
+                <p><strong>📞 Call:</strong> +91-7066674666 </p>
+                 
+                <p><strong>⏰ Timing:</strong> 9 AM – 9 PM</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Shree Sai Services. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- ✅ SUCCESS POPUP -->
+<div class="popup-overlay" style="display:none;">
+    <div class="popup-box">
+        <h3>✅ Booking Successfully</h3>
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</div>
+
+<!-- ✅ JAVASCRIPT -->
+<script>
+function closePopup() {
+    document.querySelector(".popup-overlay").style.display = "none";
+}
+
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // ❌ page reload stop
+
+    const formData = new FormData(this);
+
+    fetch("/booking", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            document.getElementById("popupMessage").innerText = data.message;
+            document.querySelector(".popup-overlay").style.display = "flex";
+
+            // ⏱ auto close after 3 sec
+            setTimeout(() => {
+                closePopup();
+                document.getElementById("bookingForm").reset();
+            }, 3000);
+        }
+    })
+    .catch(err => console.error(err));
+});
+</script>
+
+</body>
+</html>

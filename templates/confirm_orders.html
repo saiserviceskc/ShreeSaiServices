@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm Order</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="confirm-order">
+    <div class="confirm-card">
+
+        <h2>Confirm Your Order</h2>
+
+        <p><strong>Product:</strong> {{ product.name }}</p>
+        <p><strong>Price:</strong> ₹{{ product.price }}</p>
+
+        <form method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+
+            <input type="email" name="email" placeholder="Your Email" required>
+
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+
+            <textarea name="address" placeholder="Your Address" required></textarea>
+
+            <button type="submit">Confirm Order</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>

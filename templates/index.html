@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Sai Services KC - Home</title>
+
+    <!-- ✅ Correct CSS path -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- ✅ Correct favicon -->
+    <link rel="icon" type="image/jpg"
+          href="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg">
+
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <!-- ✅ Correct image path -->
+            <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg"
+                 alt="Sai Baba Logo">
+            <h1>Shree Sai Services KC</h1>
+        </div>
+
+        <nav>
+            <ul>
+                <!-- ✅ Flask routes (no .html) -->
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('sales') }}">Sales</a></li>
+                <li><a href="{{ url_for('booking') }}">Book Service</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <div class="container hero-container">
+        <h2>Reliable Washing Machine, AC & Cooler Services</h2>
+        <p>Repair, Maintenance, and Sales with trusted service!</p>
+        <a src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317104/reparation-frigo_budzqe.jpg" class="btn">Book Service Now</a>
+    </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services-overview">
+    <div class="container">
+        <h2>Our Services</h2>
+
+        <div class="service-cards">
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317099/washing_machine_mxxs79.jpg" alt="Washing Machine">
+                <h3>Washing Machine Repair</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317105/ac_lr2o2s.jpg" alt="AC">
+                <h3>AC Maintenance & Repair</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317091/cooler_ljwhyh.jpg" alt="Cooler">
+                <h3>Cooler Services</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317097/frige_szzctg.jpg" alt="Refrigerator">
+                <h3>Refrigerator Repair</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317091/microwave_ihugub.jpg" alt="Microwave">
+                <h3>Microwave Repair</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317097/dish_washer_ftzqcz.jpg" alt="Dishwasher">
+                <h3>Dishwasher Services</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317099/tv_atvybo.jpg" alt="TV">
+                <h3>TV Repair</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317095/Deep_freeze_nxipyn.jpg" alt="Deep Freezer">
+                <h3>Deep Freezer Services</h3>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Shree Sai Services. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

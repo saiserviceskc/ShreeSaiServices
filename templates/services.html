@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Sai Services - Services</title>
+
+    <link rel="icon" href="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/WhatsApp_Image_2026-01-12_at_22.54.38_uvy4zx.jpg" alt="Sai Baba Logo">
+            <h1>Shree Sai Services KC</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('sales') }}">Sales</a></li>
+                <li><a href="{{ url_for('booking') }}">Book Service</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="services-alt">
+    <div class="container">
+        <h2>Our Professional Services</h2>
+
+        <div class="services-alt-grid">
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317099/washing_machine_mxxs79.jpg" alt="Washing Machine">
+        <h3>Washing Machine Repair</h3>
+        <p>All brand repairs with genuine spare parts.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317105/ac_lr2o2s.jpg" alt="AC">
+        <h3>AC Repair</h3>
+        <p>Installation, gas refill & breakdown service.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317099/tv_atvybo.jpg" alt="TV">
+        <h3>TV Repair</h3>
+        <p>LED, LCD & Smart TV repair.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317095/deep_freezer_jlwmmb.jpg" alt="Refrigerator">
+        <h3>Refrigerator</h3>
+        <p>Keeps food fresh by maintaining the right temperature.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317095/Deep_freeze_nxipyn.jpg" alt="Deep Freezer">
+        <h3>Deep Freezer Services</h3>
+        <p>Single-door, Double-door & Commercial Freezer repair.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317091/microwave_ihugub.jpg" alt="Microwave">
+        <h3>Microwave Repair</h3>
+        <p>Solo, Convection & Grill Microwave repair.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317097/dish_washer_ftzqcz.jpg" alt="Dishwasher">
+        <h3>Dishwasher Services</h3>
+        <p>Built-in & Countertop Dishwasher repair.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+    <div class="services-alt-card">
+        <img src="https://res.cloudinary.com/dnsxrl4ta/image/upload/v1776317100/water_filter_lpqhr5.jpg" alt="Water Filter">
+        <h3>Water Filter Repair</h3>
+        <p>Removes impurities to make water clean and safe.</p>
+        <a href="{{ url_for('booking') }}" class="service-btn">Book Now</a>
+    </div>
+
+</div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Shree Sai Services</p>
+</footer>
+
+</body>
+</html>
