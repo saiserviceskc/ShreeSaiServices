@@ -5,10 +5,11 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
+import json
 from dotenv import load_dotenv
 
 # ---------- LOAD ENV ----------
-load_dotenv("pass.env")
+load_dotenv()
 
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
@@ -18,7 +19,14 @@ app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 # ---------- FIREBASE ----------
-cred = credentials.Certificate("serviceAccountKey.json")
+firebase_service_account = os.getenv("FIREBASE_SERVICE_ACCOUNT")
+
+if firebase_service_account:
+    firebase_service_account = json.loads(firebase_service_account)
+    cred = credentials.Certificate(firebase_service_account)
+else:
+    cred = credentials.Certificate("serviceAccountKey.json")
+
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -29,7 +37,7 @@ ADMIN_PASSWORD = "admin123"
 
 # ---------- EMAIL FUNCTIONS ----------
 
-# ✅ CUSTOMER EMAIL (ORDER)
+# CUSTOMER EMAIL (ORDER)
 def send_customer_email(email, name, product):
     try:
         msg = MIMEMultipart()
@@ -59,7 +67,7 @@ Shree Sai Services
         print("Customer email failed:", e)
 
 
-# ✅ ADMIN EMAIL (ORDER)
+# ADMIN EMAIL (ORDER)
 def send_admin_email(order):
     try:
         msg = MIMEMultipart()
@@ -88,7 +96,7 @@ Address: {order['customer_address']}
         print("Admin email failed:", e)
 
 
-# ✅ NEW: ADMIN EMAIL (BOOKING)
+# ADMIN EMAIL (BOOKING)
 def send_booking_email(data):
     try:
         msg = MIMEMultipart()
@@ -144,10 +152,8 @@ def booking():
             "date": request.form["date"]
         }
 
-        # ✅ Save to Firebase
         db.collection("bookings").add(data)
 
-        # ✅ SEND EMAIL TO ADMIN
         send_booking_email(data)
 
         return jsonify({
@@ -169,7 +175,7 @@ def contact():
 
 
 # ---------- SALES ----------
-@app.route('/sales')
+@app.route("/sales")
 def sales():
     products = []
 
@@ -204,10 +210,11 @@ def buy_product(product_id):
 
         db.collection("orders").add(order)
 
-        # ✅ EMAILS
-        send_customer_email(order["customer_email"],
-                            order["customer_name"],
-                            order["product_name"])
+        send_customer_email(
+            order["customer_email"],
+            order["customer_name"],
+            order["product_name"]
+        )
 
         send_admin_email(order)
 
@@ -226,8 +233,10 @@ def order_success():
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
     if request.method == "POST":
-        if (request.form["username"] == ADMIN_USERNAME and
-                request.form["password"] == ADMIN_PASSWORD):
+        if (
+            request.form["username"] == ADMIN_USERNAME and
+            request.form["password"] == ADMIN_PASSWORD
+        ):
             session["admin_logged_in"] = True
             return redirect(url_for("admin_dashboard"))
         else:
@@ -246,9 +255,11 @@ def admin_dashboard():
     bookings = [doc.to_dict() for doc in db.collection("bookings").stream()]
     orders = [doc.to_dict() for doc in db.collection("orders").stream()]
 
-    return render_template("admin_dashboard.html",
-                           bookings=bookings,
-                           orders=orders)
+    return render_template(
+        "admin_dashboard.html",
+        bookings=bookings,
+        orders=orders
+    )
 
 
 # ---------- UPDATE ORDER STATUS ----------
@@ -274,4 +285,8 @@ def admin_logout():
 
 # ---------- RUN ----------
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.getenv("PORT", 5000)),
+        debug=os.getenv("FLASK_DEBUG") == "1"
+    )
