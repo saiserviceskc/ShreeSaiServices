@@ -28,8 +28,8 @@
         text-decoration: none;
         border-radius: 8px;
         font-weight: bold;
-        transition: 0.3s;
     }
+
     a.logout-btn:hover {
         background: #ff0000;
     }
@@ -46,7 +46,7 @@
     .table-container {
         overflow-x: auto;
         margin-bottom: 50px;
-        box-shadow: 0 5px 15px rgba(255,165,0,0.2);
+        box-shadow: 0 5px 15px rgba(255, 165, 0, 0.2);
         border-radius: 12px;
         background: #1a1a1a;
         padding: 15px;
@@ -97,17 +97,18 @@
     }
 
     @media (max-width: 768px) {
-        table { font-size: 14px; }
+        table {
+            font-size: 14px;
+        }
     }
 </style>
-
 </head>
+
 <body>
 
 <h1>Admin Dashboard</h1>
 <a href="{{ url_for('admin_logout') }}" class="logout-btn">Logout</a>
 
-<!-- ================= SERVICE BOOKINGS ================= -->
 <div class="section-title">Service Bookings</div>
 
 <div class="table-container">
@@ -115,35 +116,32 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Full Name</th>
             <th>Phone</th>
             <th>Email</th>
             <th>Service</th>
             <th>Date</th>
-            <th>Created At</th>
         </tr>
     </thead>
     <tbody>
         {% for booking in bookings %}
         <tr>
             <td>{{ booking.id }}</td>
-            <td>{{ booking.name }}</td>
+            <td>{{ booking.fullname }}</td>
             <td>{{ booking.phone }}</td>
             <td>{{ booking.email }}</td>
             <td>{{ booking.service }}</td>
             <td>{{ booking.date }}</td>
-            <td>{{ booking.created_at }}</td>
         </tr>
         {% else %}
         <tr>
-            <td colspan="7" style="text-align:center;">No bookings found</td>
+            <td colspan="6" style="text-align:center;">No bookings found</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 </div>
 
-<!-- ================= ORDERS ================= -->
 <div class="section-title">Orders</div>
 
 <div class="table-container">
@@ -167,7 +165,7 @@
             <td>{{ order.id }}</td>
             <td>{{ order.customer_name }}</td>
             <td>{{ order.product_name }}</td>
-            <td>₹ {{ order.price }}</td>
+            <td>Rs. {{ order.price }}</td>
             <td>{{ order.customer_phone }}</td>
             <td>{{ order.customer_email }}</td>
             <td>{{ order.customer_address }}</td>
@@ -180,14 +178,11 @@
             </td>
             <td>
                 {% if order.status != 'Done' %}
-                <form action="{{ url_for('update_order_status', order_id=order.id) }}"
-                      method="POST">
-                    <button type="submit" class="mark-btn">
-                        Mark Done
-                    </button>
+                <form action="{{ url_for('update_order_status', order_id=order.id) }}" method="POST">
+                    <button type="submit" class="mark-btn">Mark Done</button>
                 </form>
                 {% else %}
-                ✅
+                    Done
                 {% endif %}
             </td>
         </tr>
